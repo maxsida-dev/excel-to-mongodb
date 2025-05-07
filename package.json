@@ -1,0 +1,57 @@
+{
+  "name": "excel-to-mongodb",
+  "version": "1.0.0",
+  "description": "n8n node to import Excel files to MongoDB with advanced options",
+  "keywords": [
+    "n8n",
+    "n8n-node",
+    "excel",
+    "mongodb",
+    "import"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "author": {
+    "name": "MaxSida",
+    "email": "maxsida.dev@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxsida-dev/excel-to-mongodb.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "format": "prettier --write src",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "node.js",
+    "package.json",
+    "icons"
+  ],
+  "n8n": {
+    "nodes": [
+      "dist/ExcelToMongoDB.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "n8n-workflow": "^1.82.0",
+    "prettier": "^2.0.0",
+    "typescript": "~4.9.0"
+  },
+  "dependencies": {
+    "exceljs": "^4.3.0",
+    "mongodb": "^5.0.0"
+  }
+}
