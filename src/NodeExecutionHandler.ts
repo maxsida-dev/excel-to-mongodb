@@ -277,6 +277,9 @@ export class NodeExecutionHandler {
             // Lấy đường dẫn file Excel
             const excelFile = await this.getExcelFilePath();
             
+            // Lấy tên file gốc
+            const originalFileName = this.executeFunctions.getNodeParameter('originalFileName', 0, '') as string;
+            
             // Lấy các tham số cấu hình
             const params = this.getNodeParameters();
             
@@ -291,6 +294,7 @@ export class NodeExecutionHandler {
             // Đọc file Excel
             const { documents, rowCount, fileName } = await this.processor.readExcelFile(
                 excelFile,
+                originalFileName,
                 params.sheetName,
                 params.hasHeaders,
                 params.skipEmptyRows,
@@ -309,8 +313,8 @@ export class NodeExecutionHandler {
                 params.batchSize
             );
             
-            // Trả về kết quả
-            return [this.createNodeOutput(
+            // Trả về kết quả với thông tin về tên file gốc
+            const output = this.createNodeOutput(
                 errors.length === 0,
                 rowCount,
                 documentsInserted,
@@ -318,7 +322,14 @@ export class NodeExecutionHandler {
                 fileName,
                 Object.keys(params.columnMappings).length,
                 params.selectColumns ? params.selectedColumns.length : 0
-            )];
+            );
+            
+            // Thêm thông tin về tên file gốc vào kết quả
+            if (originalFileName) {
+                output[0].json.originalFileName = originalFileName;
+            }
+            
+            return [output];
             
         } catch (error) {
             // Xử lý lỗi
@@ -346,6 +357,7 @@ export class NodeExecutionHandler {
         }
     }
 }
+
 
 
 

@@ -51,8 +51,8 @@ npm run build
 ## Configuration Options
 
 ### Excel File Source
-- **Local File**: Path to an Excel file on the local filesystem
-- **URL**: URL of an Excel file to download
+- **Excel File URL**: URL of the Excel file to download
+- **Original File Name**: Original file name to store in MongoDB documents (helps identify the source file)
 
 ### MongoDB Connection
 - **MongoDB URI**: Connection string for MongoDB
@@ -79,7 +79,6 @@ npm run build
 
 ### Performance Options
 - **Batch Size**: Number of documents to insert in one batch (higher values may improve performance for small documents)
-- **Timeout**: Maximum execution time in seconds (0 for no timeout)
 
 ## Handling Large Files
 
@@ -118,8 +117,8 @@ The node outputs a JSON object with the following properties:
      - Excel Column: `Name`, MongoDB Field: `fullName`
      - Excel Column: `Email`, MongoDB Field: `emailAddress`
    - Batch Size: `500`
-   - Timeout: `600` (10 minutes)
 
 ## License
 
 MIT
+

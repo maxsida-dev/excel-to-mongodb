@@ -39,6 +39,15 @@ export class ExcelToMongoDB implements INodeType {
                 placeholder: 'https://example.com/file.xlsx',
                 description: 'URL of the Excel file to download',
             },
+            {
+                displayName: 'Original File Name',
+                name: 'originalFileName',
+                type: 'string',
+                default: '',
+                required: false,
+                placeholder: 'sales_data_2023.xlsx',
+                description: 'Original file name to store in MongoDB documents (helps identify the source file)',
+            },
             
             // MongoDB Connection Options
             {
@@ -202,6 +211,8 @@ export class ExcelToMongoDB implements INodeType {
         return handler.execute();
     }
 }
+
+
 
 
 

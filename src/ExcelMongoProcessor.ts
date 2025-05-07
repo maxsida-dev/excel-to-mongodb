@@ -231,6 +231,7 @@ export class ExcelMongoProcessor {
         headers: string[],
         rowNumber: number,
         fileName: string,
+        originalFileName: string,
         dateFields: string[],
         convertDataTypes: boolean,
         timezone: string,
@@ -243,6 +244,11 @@ export class ExcelMongoProcessor {
             _source_file: fileName,
             _row_number: rowNumber
         };
+        
+        // Thêm trường tên file gốc nếu có
+        if (originalFileName) {
+            document.old_file_name = originalFileName;
+        }
 
         // Nếu có header, tạo object với key là header và value là giá trị tương ứng
         if (headers.length > 0) {
@@ -278,6 +284,7 @@ export class ExcelMongoProcessor {
      */
     public async readExcelFile(
         excelFilePath: string,
+        originalFileName: string,
         sheetName: string,
         hasHeaders: boolean,
         skipEmptyRows: boolean,
@@ -359,6 +366,7 @@ export class ExcelMongoProcessor {
                     headers,
                     rowNumber,
                     fileName,
+                    originalFileName,
                     dateFields,
                     convertDataTypes,
                     timezone,
